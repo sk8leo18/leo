@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Leonardo</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <video class="video-bg" autoplay muted loop playsinline>
+    <source src="background.mp4" type="video/mp4">
+  </video>
+
+  <div class="overlay"></div>
+  <canvas id="particles"></canvas>
+
+  <div class="enter-screen" id="enterScreen">
+    <div class="enter-box">
+      <div class="enter-glow"></div>
+      <h1>Leonardo</h1>
+      <p>clique para entrar</p>
+      <button class="enter-btn" id="enterBtn">
+        <i class="fa-solid fa-play"></i> Entrar
+      </button>
+    </div>
+  </div>
+
+  <main class="hero">
+    <section class="profile-shell">
+      <div class="top-symbol">
+        <i class="fa-solid fa-music"></i>
+      </div>
+
+      <div class="avatar-wrap">
+        <img class="avatar" src="image.jpeg" alt="Foto de Leonardo">
+      </div>
+
+      <h1 class="name">Leonardo</h1>
+      <p class="tagline">gamer
+      </p>
+
+      <div class="location-line">
+        <i class="fa-solid fa-location-dot"></i>
+        <span>São Vicente, Brazil</span>
+      </div>
+
+      <div class="presence-pill">
+        <div class="presence-left">
+          <i class="fa-brands fa-discord"></i>
+          <span id="discordStatus">Online — ouvindo música</span>
+        </div>
+        <div class="status-dot"></div>
+      </div>
+
+      <div class="social-row">
+        <a class="social-btn" href="https://www.instagram.com/sk8leo12/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+
+        <a class="social-btn" href="https://open.spotify.com/playlist/1kQO2m7Z9Ot6rKweYBYtMF?si=PBws-LMjTw2PEp7VHvmrrA" target="_blank" rel="noopener noreferrer" aria-label="Spotify">
+          <i class="fa-brands fa-spotify"></i>
+        </a>
+
+        <a class="social-btn" href="https://www.tiktok.com/@sk8leo18" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+
+        <a class="social-btn" href="https://discord.com/" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+          <i class="fa-brands fa-discord"></i>
+        </a>
+      </div>
+
+      <div class="stats-row">
+        <div class="mini-stat">
+          <i class="fa-solid fa-eye"></i>
+          <strong id="viewCounter">12.400</strong>
+        </div>
+
+        <div class="mini-stat">
+          <i class="fa-regular fa-clock"></i>
+          <strong id="liveClock">00:00</strong>
+        </div>
+      </div>
+
+      <div class="music-panel">
+        <div class="music-meta">
+          <img class="track-cover" src="image.jpeg" alt="Capa">
+          <div class="music-text">
+            <strong>Destaque + Playlist</strong>
+            <span>Spotify embed</span>
+          </div>
+        </div>
+
+        <div class="spotify-embeds">
+          <iframe
+            id="spotifyTrack"
+            src="https://open.spotify.com/embed/track/6IQnS5jbctbXMd6TOeEYaz?theme=0"
+            width="100%"
+            height="80"
+            frameborder="0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+          </iframe>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
