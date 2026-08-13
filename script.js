@@ -5,32 +5,68 @@ const viewCounter = document.getElementById("viewCounter");
 const liveClock = document.getElementById("liveClock");
 const discordStatus = document.getElementById("discordStatus");
 
-const spotifyTrack = document.getElementById("spotifyTrack");
 const bgm = document.getElementById("bgm");
-const soundToggle = document.getElementById("soundToggle");
-const soundIcon = soundToggle.querySelector("i");
+const playBtn = document.getElementById("playBtn");
+const playIcon = playBtn.querySelector("i");
+const seekBar = document.getElementById("seekBar");
+const volumeBar = document.getElementById("volumeBar");
+const timeCurrent = document.getElementById("timeCurrent");
+const timeTotal = document.getElementById("timeTotal");
 
 bgm.volume = 0.55;
+
+function formatTime(sec) {
+  if (!isFinite(sec)) return "0:00";
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60).toString().padStart(2, "0");
+  return `${m}:${s}`;
+}
+
+function setPlayingUI(isPlaying) {
+  playIcon.className = isPlaying ? "fa-solid fa-pause" : "fa-solid fa-play";
+}
 
 enterBtn.addEventListener("click", () => {
   enterScreen.classList.add("hide");
 
-  bgm.play().catch(() => {
-    // navegador bloqueou o autoplay; o botão de som ainda permite iniciar manualmente
+  bgm.play().then(() => setPlayingUI(true)).catch(() => {
+    // navegador bloqueou o autoplay; o botão de play ainda permite iniciar manualmente
+    setPlayingUI(false);
   });
 });
 
-soundToggle.addEventListener("click", () => {
+playBtn.addEventListener("click", () => {
   if (bgm.paused) {
     bgm.play();
-    soundToggle.classList.remove("muted");
-    soundIcon.className = "fa-solid fa-volume-high";
+    setPlayingUI(true);
   } else {
     bgm.pause();
-    soundToggle.classList.add("muted");
-    soundIcon.className = "fa-solid fa-volume-xmark";
+    setPlayingUI(false);
   }
 });
+
+bgm.addEventListener("loadedmetadata", () => {
+  timeTotal.textContent = formatTime(bgm.duration);
+});
+
+bgm.addEventListener("timeupdate", () => {
+  if (bgm.duration) {
+    seekBar.value = (bgm.currentTime / bgm.duration) * 100;
+  }
+  timeCurrent.textContent = formatTime(bgm.currentTime);
+});
+
+seekBar.addEventListener("input", () => {
+  if (bgm.duration) {
+    bgm.currentTime = (seekBar.value / 100) * bgm.duration;
+  }
+});
+
+volumeBar.addEventListener("input", () => {
+  bgm.volume = volumeBar.value / 100;
+});
+
+bgm.addEventListener("ended", () => setPlayingUI(false));
 
 let fakeViews = 118;
 

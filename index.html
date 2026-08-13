@@ -29,10 +29,6 @@
     </div>
   </div>
 
-  <button class="sound-toggle" id="soundToggle" aria-label="Mutar/Ativar música">
-    <i class="fa-solid fa-volume-high"></i>
-  </button>
-
   <main class="hero">
     <section class="profile-shell">
       <div class="top-symbol">
@@ -64,12 +60,8 @@
           <i class="fa-brands fa-instagram"></i>
         </a>
 
-        <a class="social-btn" href="https://open.spotify.com/playlist/1kQO2m7Z9Ot6rKweYBYtMF?si=PBws-LMjTw2PEp7VHvmrrA" target="_blank" rel="noopener noreferrer" aria-label="Playlist do Spotify" title="Minha playlist">
-          <i class="fa-brands fa-spotify"></i>
-        </a>
-
         <a class="social-btn" href="https://open.spotify.com/user/227hnu57uuqopg6m7xxww3k5q?si=21374a4e9cf241bf" target="_blank" rel="noopener noreferrer" aria-label="Perfil do Spotify" title="Meu perfil no Spotify">
-          <i class="fa-solid fa-user-large"></i>
+          <i class="fa-brands fa-spotify"></i>
         </a>
 
         <a class="social-btn" href="https://www.tiktok.com/@sk8leo18" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="TikTok">
@@ -95,30 +87,27 @@
 
       <div class="music-panel">
         <div class="music-meta">
-          <img class="track-cover" src="image.jpeg" alt="Capa">
+          <img class="track-cover" src="lowlife-cover.png" alt="Capa de Low Life">
           <div class="music-text">
             <strong>Tocando agora</strong>
             <span>The Weeknd, Future — Low Life</span>
           </div>
-          <i class="fa-solid fa-waveform music-bars"></i>
+          <button class="play-btn" id="playBtn" aria-label="Tocar/Pausar">
+            <i class="fa-solid fa-play"></i>
+          </button>
         </div>
 
-        <div class="spotify-embeds">
-          <iframe
-            id="spotifyTrack"
-            src="https://open.spotify.com/embed/track/6IQnS5jbctbXMd6TOeEYaz?theme=0"
-            width="100%"
-            height="80"
-            frameborder="0"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy">
-          </iframe>
+        <div class="player-controls">
+          <span class="time-current" id="timeCurrent">0:00</span>
+          <input type="range" id="seekBar" class="seek-bar" min="0" max="100" value="0" step="0.1">
+          <span class="time-total" id="timeTotal">0:00</span>
+        </div>
+
+        <div class="volume-row">
+          <i class="fa-solid fa-volume-high"></i>
+          <input type="range" id="volumeBar" class="volume-bar" min="0" max="100" value="55">
         </div>
       </div>
-
-      <a class="profile-link" href="https://open.spotify.com/user/227hnu57uuqopg6m7xxww3k5q?si=21374a4e9cf241bf" target="_blank" rel="noopener noreferrer">
-        <i class="fa-brands fa-spotify"></i> Ver meu perfil no Spotify
-      </a>
     </section>
   </main>
 
