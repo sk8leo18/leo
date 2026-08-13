@@ -6,19 +6,17 @@
   <title>Leonardo</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-  <video class="video-bg" autoplay muted loop playsinline>
-    <source src="background.mp4" type="video/mp4">
-  </video>
-
   <div class="overlay"></div>
   <canvas id="particles"></canvas>
+
+  <audio id="bgm" src="music.mp3" loop preload="none"></audio>
 
   <div class="enter-screen" id="enterScreen">
     <div class="enter-box">
@@ -31,6 +29,10 @@
     </div>
   </div>
 
+  <button class="sound-toggle" id="soundToggle" aria-label="Mutar/Ativar música">
+    <i class="fa-solid fa-volume-high"></i>
+  </button>
+
   <main class="hero">
     <section class="profile-shell">
       <div class="top-symbol">
@@ -42,8 +44,7 @@
       </div>
 
       <h1 class="name">Leonardo</h1>
-      <p class="tagline">gamer
-      </p>
+      <p class="tagline">skatista • gamer</p>
 
       <div class="location-line">
         <i class="fa-solid fa-location-dot"></i>
@@ -59,19 +60,23 @@
       </div>
 
       <div class="social-row">
-        <a class="social-btn" href="https://www.instagram.com/sk8leo12/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <a class="social-btn" href="https://www.instagram.com/sk8leo12/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
           <i class="fa-brands fa-instagram"></i>
         </a>
 
-        <a class="social-btn" href="https://open.spotify.com/playlist/1kQO2m7Z9Ot6rKweYBYtMF?si=PBws-LMjTw2PEp7VHvmrrA" target="_blank" rel="noopener noreferrer" aria-label="Spotify">
+        <a class="social-btn" href="https://open.spotify.com/playlist/1kQO2m7Z9Ot6rKweYBYtMF?si=PBws-LMjTw2PEp7VHvmrrA" target="_blank" rel="noopener noreferrer" aria-label="Playlist do Spotify" title="Minha playlist">
           <i class="fa-brands fa-spotify"></i>
         </a>
 
-        <a class="social-btn" href="https://www.tiktok.com/@sk8leo18" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+        <a class="social-btn" href="https://open.spotify.com/user/227hnu57uuqopg6m7xxww3k5q?si=21374a4e9cf241bf" target="_blank" rel="noopener noreferrer" aria-label="Perfil do Spotify" title="Meu perfil no Spotify">
+          <i class="fa-solid fa-user-large"></i>
+        </a>
+
+        <a class="social-btn" href="https://www.tiktok.com/@sk8leo18" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="TikTok">
           <i class="fa-brands fa-tiktok"></i>
         </a>
 
-        <a class="social-btn" href="https://discord.com/" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+        <a class="social-btn" href="https://discord.com/" target="_blank" rel="noopener noreferrer" aria-label="Discord" title="Discord">
           <i class="fa-brands fa-discord"></i>
         </a>
       </div>
@@ -92,9 +97,10 @@
         <div class="music-meta">
           <img class="track-cover" src="image.jpeg" alt="Capa">
           <div class="music-text">
-            <strong>Destaque + Playlist</strong>
-            <span>Spotify embed</span>
+            <strong>Tocando agora</strong>
+            <span>The Weeknd, Future — Low Life</span>
           </div>
+          <i class="fa-solid fa-waveform music-bars"></i>
         </div>
 
         <div class="spotify-embeds">
@@ -107,9 +113,12 @@
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy">
           </iframe>
-
         </div>
       </div>
+
+      <a class="profile-link" href="https://open.spotify.com/user/227hnu57uuqopg6m7xxww3k5q?si=21374a4e9cf241bf" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-spotify"></i> Ver meu perfil no Spotify
+      </a>
     </section>
   </main>
 

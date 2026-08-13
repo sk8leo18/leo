@@ -6,23 +6,29 @@ const liveClock = document.getElementById("liveClock");
 const discordStatus = document.getElementById("discordStatus");
 
 const spotifyTrack = document.getElementById("spotifyTrack");
+const bgm = document.getElementById("bgm");
+const soundToggle = document.getElementById("soundToggle");
+const soundIcon = soundToggle.querySelector("i");
 
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+bgm.volume = 0.55;
 
 enterBtn.addEventListener("click", () => {
   enterScreen.classList.add("hide");
 
-  setTimeout(() => {
-    spotifyTrack.src =
-      "https://open.spotify.com/embed/track/6IQnS5jbctbXMd6TOeEYaz?theme=0&autoplay=1";
-  }, 300);
-}, { once: true });
+  bgm.play().catch(() => {
+    // navegador bloqueou o autoplay; o botão de som ainda permite iniciar manualmente
+  });
+});
 
-// também permite entrar apertando Enter/Espaço, sem precisar do mouse
-window.addEventListener("keydown", (e) => {
-  if (!enterScreen.classList.contains("hide") && (e.key === "Enter" || e.key === " ")) {
-    e.preventDefault();
-    enterBtn.click();
+soundToggle.addEventListener("click", () => {
+  if (bgm.paused) {
+    bgm.play();
+    soundToggle.classList.remove("muted");
+    soundIcon.className = "fa-solid fa-volume-high";
+  } else {
+    bgm.pause();
+    soundToggle.classList.add("muted");
+    soundIcon.className = "fa-solid fa-volume-xmark";
   }
 });
 
@@ -67,19 +73,13 @@ setInterval(() => {
   discordStatus.textContent = discordStates[i];
 }, 3500);
 
-// ---------------- partículas de fundo ----------------
 const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d");
 let particles = [];
-let dpr = Math.min(window.devicePixelRatio || 1, 2);
 
 function resize() {
-  dpr = Math.min(window.devicePixelRatio || 1, 2);
-  canvas.width = window.innerWidth * dpr;
-  canvas.height = window.innerHeight * dpr;
-  canvas.style.width = window.innerWidth + "px";
-  canvas.style.height = window.innerHeight + "px";
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 }
 
 function createParticles() {
@@ -88,8 +88,8 @@ function createParticles() {
 
   for (let i = 0; i < amount; i++) {
     particles.push({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
       r: Math.random() * 2 + 0.4,
       s: Math.random() * 0.45 + 0.08,
       o: Math.random() * 0.8
@@ -98,7 +98,7 @@ function createParticles() {
 }
 
 function animate() {
-  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   particles.forEach(p => {
     ctx.beginPath();
@@ -108,9 +108,9 @@ function animate() {
 
     p.y += p.s;
 
-    if (p.y > window.innerHeight) {
+    if (p.y > canvas.height) {
       p.y = -5;
-      p.x = Math.random() * window.innerWidth;
+      p.x = Math.random() * canvas.width;
     }
   });
 
@@ -124,16 +124,4 @@ window.addEventListener("resize", () => {
 
 resize();
 createParticles();
-
-// respeita "reduzir movimento" do sistema — desenha as partículas paradas, sem animar
-if (!prefersReducedMotion) {
-  animate();
-} else {
-  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-  particles.forEach(p => {
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(255,255,255,${p.o})`;
-    ctx.fill();
-  });
-}
+animate();
